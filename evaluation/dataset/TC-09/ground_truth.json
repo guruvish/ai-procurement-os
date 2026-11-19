@@ -1,0 +1,178 @@
+{
+  "case": "TC-09",
+  "title": "GST treatment differs (inclusive / exclusive / unclear)",
+  "rfq": {
+    "rfq_id": "EV-TC09",
+    "product_name": "Paracetamol API",
+    "required_quantity": 10000.0,
+    "unit": "kg",
+    "technical_requirements": [
+      {
+        "name": "purity",
+        "operator": ">=",
+        "value": 99.5,
+        "unit": "%",
+        "mandatory": true,
+        "evidence": null
+      },
+      {
+        "name": "moisture",
+        "operator": "<=",
+        "value": 0.5,
+        "unit": "%",
+        "mandatory": true,
+        "evidence": null
+      }
+    ],
+    "required_certificates": [
+      "Certificate of Analysis",
+      "GMP certificate"
+    ],
+    "max_delivery_days": 30,
+    "payment_terms": "30 days after delivery",
+    "currency": "INR",
+    "tax_basis": null,
+    "evidence": {}
+  },
+  "quotes": [
+    {
+      "file": "Acme_A-109.pdf",
+      "expected_verdict": "COMPLIANT",
+      "expect_rejected": false,
+      "truth": {
+        "supplier_name": "Acme Chem Industries",
+        "source_document": "",
+        "quotation_number": null,
+        "quotation_date": "2026-11-14",
+        "valid_until": "2026-12-14",
+        "product_name": null,
+        "quantity": 10000.0,
+        "unit": "kg",
+        "unit_price": 185.0,
+        "price_per": "kg",
+        "currency": "INR",
+        "tax_status": "exclusive",
+        "tax_rate_percent": 18.0,
+        "freight_cost": null,
+        "delivery_days": 21,
+        "payment_terms": "30 days after delivery",
+        "specifications": [
+          {
+            "name": "purity",
+            "value": 99.8,
+            "unit": "%",
+            "evidence": null
+          },
+          {
+            "name": "moisture",
+            "value": 0.3,
+            "unit": "%",
+            "evidence": null
+          }
+        ],
+        "certificates": [
+          "Certificate of Analysis",
+          "GMP certificate"
+        ],
+        "exclusions": [],
+        "conflicts": [],
+        "verification_warnings": [],
+        "evidence": {},
+        "extraction_status": "extracted"
+      }
+    },
+    {
+      "file": "Theta_T-91.pdf",
+      "expected_verdict": "COMPLIANT",
+      "expect_rejected": false,
+      "truth": {
+        "supplier_name": "Theta Healthcare",
+        "source_document": "",
+        "quotation_number": null,
+        "quotation_date": "2026-11-14",
+        "valid_until": "2026-12-14",
+        "product_name": null,
+        "quantity": 10000.0,
+        "unit": "kg",
+        "unit_price": 212.4,
+        "price_per": "kg",
+        "currency": "INR",
+        "tax_status": "inclusive",
+        "tax_rate_percent": 18.0,
+        "freight_cost": null,
+        "delivery_days": 20,
+        "payment_terms": "30 days after delivery",
+        "specifications": [
+          {
+            "name": "purity",
+            "value": 99.7,
+            "unit": "%",
+            "evidence": null
+          },
+          {
+            "name": "moisture",
+            "value": 0.3,
+            "unit": "%",
+            "evidence": null
+          }
+        ],
+        "certificates": [
+          "Certificate of Analysis",
+          "GMP certificate"
+        ],
+        "exclusions": [],
+        "conflicts": [],
+        "verification_warnings": [],
+        "evidence": {},
+        "extraction_status": "extracted"
+      }
+    },
+    {
+      "file": "Lambda_L-92.pdf",
+      "expected_verdict": "NEEDS_CLARIFICATION",
+      "expect_rejected": false,
+      "truth": {
+        "supplier_name": "Lambda Chem",
+        "source_document": "",
+        "quotation_number": null,
+        "quotation_date": "2026-11-14",
+        "valid_until": "2026-12-14",
+        "product_name": null,
+        "quantity": 10000.0,
+        "unit": "kg",
+        "unit_price": 175.0,
+        "price_per": "kg",
+        "currency": "INR",
+        "tax_status": "unknown",
+        "tax_rate_percent": null,
+        "freight_cost": null,
+        "delivery_days": 20,
+        "payment_terms": "30 days after delivery",
+        "specifications": [
+          {
+            "name": "purity",
+            "value": 99.7,
+            "unit": "%",
+            "evidence": null
+          },
+          {
+            "name": "moisture",
+            "value": 0.3,
+            "unit": "%",
+            "evidence": null
+          }
+        ],
+        "certificates": [
+          "Certificate of Analysis",
+          "GMP certificate"
+        ],
+        "exclusions": [],
+        "conflicts": [],
+        "verification_warnings": [],
+        "evidence": {},
+        "extraction_status": "extracted"
+      }
+    }
+  ],
+  "expect_recommended": "Theta Healthcare"
+}

@@ -1,0 +1,4583 @@
+{
+  "summary": {
+    "cases": 10,
+    "extraction_accuracy": 99.5,
+    "fields_total": 440,
+    "verdict_accuracy": 100.0,
+    "verdicts_total": 21,
+    "check_agreement": 100.0,
+    "checks_total": 143,
+    "recommendation_accuracy": 100.0,
+    "missing_precision": 100.0,
+    "missing_recall": 100.0,
+    "bad_files_rejected": "2/2",
+    "avg_seconds_per_case": 31.7,
+    "ai_calls": 31,
+    "ai_calls_failed": 0,
+    "repair_retries": 0,
+    "rate_limit_waits": 0,
+    "models_used": [
+      "gemini:gemini-2.5-flash",
+      "gemini:gemini-3.5-flash-lite"
+    ],
+    "crashed_cases": []
+  },
+  "results": [
+    {
+      "case": "TC-01",
+      "title": "Normal RFQ - three complete quotations (PDF, Excel, Word)",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 45.9,
+      "ai_calls": 4,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 0,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Paracetamol API",
+          "got": "Paracetamol API",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "10000.0",
+          "got": "10000.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.operator",
+          "expected": ">=",
+          "got": ">=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.value",
+          "expected": "99.5",
+          "got": "99.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "0.5",
+          "got": "0.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "supplier_name",
+          "expected": "Acme Chem Industries",
+          "got": "Acme Chem Industries",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "unit_price",
+          "expected": "185.0",
+          "got": "185.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "supplier_name",
+          "expected": "Delta Life Sciences",
+          "got": "Delta Life Sciences, Pune",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "unit_price",
+          "expected": "180.0",
+          "got": "180.0",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Delta Life Sciences",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "supplier_name",
+          "expected": "Orion Pharma",
+          "got": "Orion Pharma",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "unit_price",
+          "expected": "190.0",
+          "got": "190.0",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Orion Pharma",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Delta Life Sciences",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Delta Life Sciences",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Delta Life Sciences",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Delta Life Sciences",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Delta Life Sciences",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Delta Life Sciences",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Delta Life Sciences",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Delta Life Sciences",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Orion Pharma",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Orion Pharma",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Orion Pharma",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Orion Pharma",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Orion Pharma",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Orion Pharma",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Orion Pharma",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Orion Pharma",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Delta Life Sciences",
+        "got": "Delta Life Sciences, Pune",
+        "ok": true
+      },
+      "rejected": {},
+      "notes": []
+    },
+    {
+      "case": "TC-02",
+      "title": "Supplier quotation missing price",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 22.0,
+      "ai_calls": 3,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-2.5-flash",
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 0,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Paracetamol API",
+          "got": "Paracetamol API (IP/BP grade)",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "10000.0",
+          "got": "10000.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.operator",
+          "expected": ">=",
+          "got": ">=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.value",
+          "expected": "99.5",
+          "got": "99.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "0.5",
+          "got": "0.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "supplier_name",
+          "expected": "Acme Chem Industries",
+          "got": "Acme Chem Industries",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "unit_price",
+          "expected": "185.0",
+          "got": "185.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "supplier_name",
+          "expected": "Gamma Organics Ltd",
+          "got": "Gamma Organics Ltd",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "unit_price",
+          "expected": null,
+          "got": null,
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "price_per",
+          "expected": null,
+          "got": null,
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "currency",
+          "expected": null,
+          "got": null,
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "tax_status",
+          "expected": "unknown",
+          "got": "unknown",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "tax_rate_percent",
+          "expected": null,
+          "got": null,
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "delivery_days",
+          "expected": "20",
+          "got": "20",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "spec:purity",
+          "expected": "99.7",
+          "got": "99.7",
+          "ok": true
+        },
+        {
+          "scope": "Gamma Organics Ltd",
+          "field": "spec:moisture",
+          "expected": "0.2",
+          "got": "0.2",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Gamma Organics Ltd",
+          "type": "verdict",
+          "expected": "NEEDS_CLARIFICATION",
+          "got": "NEEDS_CLARIFICATION",
+          "ok": true
+        },
+        {
+          "supplier": "Gamma Organics Ltd",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Gamma Organics Ltd",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Gamma Organics Ltd",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Gamma Organics Ltd",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Gamma Organics Ltd",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Gamma Organics Ltd",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Gamma Organics Ltd",
+          "type": "check:price",
+          "expected": "UNKNOWN",
+          "got": "UNKNOWN",
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "rejected": {},
+      "notes": []
+    },
+    {
+      "case": "TC-03",
+      "title": "Different measurement units (price per MT vs per gram)",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 26.3,
+      "ai_calls": 3,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 0,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Microcrystalline Cellulose",
+          "got": "Microcrystalline Cellulose PH-102",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "5.0",
+          "got": "5.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "MT",
+          "got": "MT",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "45",
+          "got": "45",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa']",
+          "got": "['coa']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "5.0",
+          "got": "5.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "supplier_name",
+          "expected": "Cellutech Industries",
+          "got": "Cellutech Industries",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "unit_price",
+          "expected": "195000.0",
+          "got": "195000.0",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "price_per",
+          "expected": "MT",
+          "got": "MT",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "tax_rate_percent",
+          "expected": "12.0",
+          "got": "12.0",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "delivery_days",
+          "expected": "14",
+          "got": "14",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "quantity",
+          "expected": "5.0 MT",
+          "got": "5.0 MT",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "payment_days",
+          "expected": "45",
+          "got": "45",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "certificates",
+          "expected": "['coa']",
+          "got": "['coa']",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "spec:moisture",
+          "expected": "4.2",
+          "got": "4.2",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "supplier_name",
+          "expected": "FibreChem Pvt Ltd",
+          "got": "FibreChem Pvt Ltd",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "unit_price",
+          "expected": "0.21",
+          "got": "210.0",
+          "ok": false
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "price_per",
+          "expected": "g",
+          "got": "kg",
+          "ok": false
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "tax_rate_percent",
+          "expected": "12.0",
+          "got": "12.0",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "delivery_days",
+          "expected": "18",
+          "got": "18",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "quantity",
+          "expected": "5000.0 kg",
+          "got": "5000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "payment_days",
+          "expected": "45",
+          "got": "45",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "certificates",
+          "expected": "['coa']",
+          "got": "['coa']",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "spec:moisture",
+          "expected": "3.8",
+          "got": "3.8",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Cellutech Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Cellutech Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Cellutech Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Cellutech Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Cellutech Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Cellutech Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Cellutech Industries",
+        "got": "Cellutech Industries",
+        "ok": true
+      },
+      "rejected": {},
+      "notes": []
+    },
+    {
+      "case": "TC-04",
+      "title": "Scanned quotation PDF (image only, no text layer)",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 34.3,
+      "ai_calls": 3,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 1,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Paracetamol API",
+          "got": "Paracetamol API (IP/BP grade)",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "10000.0",
+          "got": "10000.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.operator",
+          "expected": ">=",
+          "got": ">=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.value",
+          "expected": "99.5",
+          "got": "99.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "0.5",
+          "got": "0.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "supplier_name",
+          "expected": "Acme Chem Industries",
+          "got": "Acme Chem Industries",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "unit_price",
+          "expected": "185.0",
+          "got": "185.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "supplier_name",
+          "expected": "Kappa Fine Chemicals",
+          "got": "Kappa Fine Chemicals, Chennai",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "unit_price",
+          "expected": "182.0",
+          "got": "182.0",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "delivery_days",
+          "expected": "25",
+          "got": "25",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Kappa Fine Chemicals",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Kappa Fine Chemicals",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Kappa Fine Chemicals",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Kappa Fine Chemicals",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Kappa Fine Chemicals",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Kappa Fine Chemicals",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Kappa Fine Chemicals",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Kappa Fine Chemicals",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Kappa Fine Chemicals",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Kappa Fine Chemicals",
+        "got": "Kappa Fine Chemicals, Chennai",
+        "ok": true
+      },
+      "rejected": {},
+      "notes": []
+    },
+    {
+      "case": "TC-05",
+      "title": "Conflicting purity values in one quotation",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 24.9,
+      "ai_calls": 3,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 0,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Paracetamol API",
+          "got": "Paracetamol API (IP/BP grade)",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "10000.0",
+          "got": "10000.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.operator",
+          "expected": ">=",
+          "got": ">=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.value",
+          "expected": "99.5",
+          "got": "99.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "0.5",
+          "got": "0.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "supplier_name",
+          "expected": "Acme Chem Industries",
+          "got": "Acme Chem Industries",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "unit_price",
+          "expected": "185.0",
+          "got": "185.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "supplier_name",
+          "expected": "Sigma Actives",
+          "got": "Sigma Actives, Hyderabad",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "unit_price",
+          "expected": "178.0",
+          "got": "178.0",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "conflict_flagged",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Sigma Actives",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Sigma Actives",
+          "type": "verdict",
+          "expected": "NEEDS_CLARIFICATION",
+          "got": "NEEDS_CLARIFICATION",
+          "ok": true
+        },
+        {
+          "supplier": "Sigma Actives",
+          "type": "check:purity",
+          "expected": "REVIEW_REQUIRED",
+          "got": "REVIEW_REQUIRED",
+          "ok": true
+        },
+        {
+          "supplier": "Sigma Actives",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Sigma Actives",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Sigma Actives",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Sigma Actives",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Sigma Actives",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Sigma Actives",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "rejected": {},
+      "notes": []
+    },
+    {
+      "case": "TC-06",
+      "title": "Missing Certificate of Analysis",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 27.8,
+      "ai_calls": 3,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 0,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Paracetamol API",
+          "got": "Paracetamol API (IP/BP grade)",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "10000.0",
+          "got": "10000.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.operator",
+          "expected": ">=",
+          "got": ">=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.value",
+          "expected": "99.5",
+          "got": "99.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "0.5",
+          "got": "0.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "supplier_name",
+          "expected": "Acme Chem Industries",
+          "got": "Acme Chem Industries",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "unit_price",
+          "expected": "185.0",
+          "got": "185.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "supplier_name",
+          "expected": "Beta Pharma Chem",
+          "got": "Beta Pharma Chem",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "unit_price",
+          "expected": "176.0",
+          "got": "176.0",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "delivery_days",
+          "expected": "25",
+          "got": "25",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "certificates",
+          "expected": "['gmp']",
+          "got": "['gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "spec:purity",
+          "expected": "99.7",
+          "got": "99.7",
+          "ok": true
+        },
+        {
+          "scope": "Beta Pharma Chem",
+          "field": "spec:moisture",
+          "expected": "0.4",
+          "got": "0.4",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Beta Pharma Chem",
+          "type": "verdict",
+          "expected": "NEEDS_CLARIFICATION",
+          "got": "NEEDS_CLARIFICATION",
+          "ok": true
+        },
+        {
+          "supplier": "Beta Pharma Chem",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Beta Pharma Chem",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Beta Pharma Chem",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "UNKNOWN",
+          "got": "UNKNOWN",
+          "ok": true
+        },
+        {
+          "supplier": "Beta Pharma Chem",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Beta Pharma Chem",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Beta Pharma Chem",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Beta Pharma Chem",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "rejected": {},
+      "notes": []
+    },
+    {
+      "case": "TC-07",
+      "title": "Supplier delivery exceeds the limit",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 22.6,
+      "ai_calls": 3,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 0,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Paracetamol API",
+          "got": "Paracetamol API (IP/BP grade)",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "10000.0",
+          "got": "10000.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.operator",
+          "expected": ">=",
+          "got": ">=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.value",
+          "expected": "99.5",
+          "got": "99.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "0.5",
+          "got": "0.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "supplier_name",
+          "expected": "Acme Chem Industries",
+          "got": "Acme Chem Industries",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "unit_price",
+          "expected": "185.0",
+          "got": "185.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "supplier_name",
+          "expected": "Zeta Labs",
+          "got": "Zeta Labs",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "unit_price",
+          "expected": "170.0",
+          "got": "170.0",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "delivery_days",
+          "expected": "42",
+          "got": "42",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "spec:purity",
+          "expected": "99.9",
+          "got": "99.9",
+          "ok": true
+        },
+        {
+          "scope": "Zeta Labs",
+          "field": "spec:moisture",
+          "expected": "0.2",
+          "got": "0.2",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Zeta Labs",
+          "type": "verdict",
+          "expected": "NOT_COMPLIANT",
+          "got": "NOT_COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Zeta Labs",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Zeta Labs",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Zeta Labs",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Zeta Labs",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Zeta Labs",
+          "type": "check:delivery_days",
+          "expected": "FAIL",
+          "got": "FAIL",
+          "ok": true
+        },
+        {
+          "supplier": "Zeta Labs",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Zeta Labs",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "rejected": {},
+      "notes": []
+    },
+    {
+      "case": "TC-08",
+      "title": "Quotation has expired",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 25.2,
+      "ai_calls": 3,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 0,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Paracetamol API",
+          "got": "Paracetamol API",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "10000.0",
+          "got": "10000.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.operator",
+          "expected": ">=",
+          "got": ">=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.value",
+          "expected": "99.5",
+          "got": "99.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "0.5",
+          "got": "0.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "supplier_name",
+          "expected": "Acme Chem Industries",
+          "got": "Acme Chem Industries",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "unit_price",
+          "expected": "185.0",
+          "got": "185.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "supplier_name",
+          "expected": "Omega Drugs",
+          "got": "Omega Drugs",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "unit_price",
+          "expected": "174.0",
+          "got": "174.0",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "valid_until",
+          "expected": "2026-10-20",
+          "got": "2026-10-20",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "quotation_date",
+          "expected": "2026-09-20",
+          "got": "2026-09-20",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "spec:purity",
+          "expected": "99.6",
+          "got": "99.6",
+          "ok": true
+        },
+        {
+          "scope": "Omega Drugs",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Omega Drugs",
+          "type": "verdict",
+          "expected": "NEEDS_CLARIFICATION",
+          "got": "NEEDS_CLARIFICATION",
+          "ok": true
+        },
+        {
+          "supplier": "Omega Drugs",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Omega Drugs",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Omega Drugs",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Omega Drugs",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Omega Drugs",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Omega Drugs",
+          "type": "check:quotation_validity",
+          "expected": "REVIEW_REQUIRED",
+          "got": "REVIEW_REQUIRED",
+          "ok": true
+        },
+        {
+          "supplier": "Omega Drugs",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "rejected": {},
+      "notes": []
+    },
+    {
+      "case": "TC-09",
+      "title": "GST treatment differs (inclusive / exclusive / unclear)",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 48.7,
+      "ai_calls": 4,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 0,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Paracetamol API",
+          "got": "Paracetamol API (IP/BP grade)",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "10000.0",
+          "got": "10000.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.operator",
+          "expected": ">=",
+          "got": ">=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.value",
+          "expected": "99.5",
+          "got": "99.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "0.5",
+          "got": "0.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "supplier_name",
+          "expected": "Acme Chem Industries",
+          "got": "Acme Chem Industries",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "unit_price",
+          "expected": "185.0",
+          "got": "185.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "supplier_name",
+          "expected": "Theta Healthcare",
+          "got": "Theta Healthcare",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "unit_price",
+          "expected": "212.4",
+          "got": "212.4",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "tax_status",
+          "expected": "inclusive",
+          "got": "inclusive",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "delivery_days",
+          "expected": "20",
+          "got": "20",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "spec:purity",
+          "expected": "99.7",
+          "got": "99.7",
+          "ok": true
+        },
+        {
+          "scope": "Theta Healthcare",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "supplier_name",
+          "expected": "Lambda Chem",
+          "got": "Lambda Chem",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "unit_price",
+          "expected": "175.0",
+          "got": "175.0",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "tax_status",
+          "expected": "unknown",
+          "got": "unknown",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "tax_rate_percent",
+          "expected": null,
+          "got": null,
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "delivery_days",
+          "expected": "20",
+          "got": "20",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "spec:purity",
+          "expected": "99.7",
+          "got": "99.7",
+          "ok": true
+        },
+        {
+          "scope": "Lambda Chem",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Theta Healthcare",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Theta Healthcare",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Theta Healthcare",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Theta Healthcare",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Theta Healthcare",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Theta Healthcare",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Theta Healthcare",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Theta Healthcare",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Lambda Chem",
+          "type": "verdict",
+          "expected": "NEEDS_CLARIFICATION",
+          "got": "NEEDS_CLARIFICATION",
+          "ok": true
+        },
+        {
+          "supplier": "Lambda Chem",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Lambda Chem",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Lambda Chem",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Lambda Chem",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Lambda Chem",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Lambda Chem",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Lambda Chem",
+          "type": "check:price",
+          "expected": "REVIEW_REQUIRED",
+          "got": "REVIEW_REQUIRED",
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Theta Healthcare",
+        "got": "Theta Healthcare",
+        "ok": true
+      },
+      "rejected": {},
+      "notes": []
+    },
+    {
+      "case": "TC-10",
+      "title": "Corrupted / wrong documents among valid ones",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 39.3,
+      "ai_calls": 2,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 0,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Paracetamol API",
+          "got": "Paracetamol API (IP/BP grade)",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "10000.0",
+          "got": "10000.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.operator",
+          "expected": ">=",
+          "got": ">=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.value",
+          "expected": "99.5",
+          "got": "99.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:purity.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "0.5",
+          "got": "0.5",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "supplier_name",
+          "expected": "Acme Chem Industries",
+          "got": "Acme Chem Industries, Hyderabad",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "unit_price",
+          "expected": "185.0",
+          "got": "185.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "price_per",
+          "expected": "kg",
+          "got": "kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "tax_rate_percent",
+          "expected": "18.0",
+          "got": "18.0",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "quantity",
+          "expected": "10000.0 kg",
+          "got": "10000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "payment_days",
+          "expected": "30",
+          "got": "30",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "certificates",
+          "expected": "['coa', 'gmp']",
+          "got": "['coa', 'gmp']",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:purity",
+          "expected": "99.8",
+          "got": "99.8",
+          "ok": true
+        },
+        {
+          "scope": "Acme Chem Industries",
+          "field": "spec:moisture",
+          "expected": "0.3",
+          "got": "0.3",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:purity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:certificate: GMP certificate",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Acme Chem Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Epsilon_quote.pdf",
+          "type": "rejected_with_message",
+          "expected": true,
+          "got": true,
+          "ok": true
+        },
+        {
+          "supplier": "Notes_quote.xlsx",
+          "type": "rejected_with_message",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries, Hyderabad",
+        "ok": true
+      },
+      "rejected": {
+        "Epsilon_quote.pdf": "'Epsilon_quote.pdf' could not be opened - the file seems damaged or incomplete. Try downloading or saving it again.",
+        "Notes_quote.xlsx": "'Notes_quote.xlsx' is not a real .xlsx file (its content does not match the extension)."
+      },
+      "notes": []
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "case": "TC-03",
+  "title": "Different measurement units (price per MT vs per gram)",
+  "rfq": {
+    "rfq_id": "EV-TC03",
+    "product_name": "Microcrystalline Cellulose",
+    "required_quantity": 5.0,
+    "unit": "MT",
+    "technical_requirements": [
+      {
+        "name": "moisture",
+        "operator": "<=",
+        "value": 5.0,
+        "unit": "%",
+        "mandatory": true,
+        "evidence": null
+      }
+    ],
+    "required_certificates": [
+      "Certificate of Analysis"
+    ],
+    "max_delivery_days": 21,
+    "payment_terms": "45 days after delivery",
+    "currency": "INR",
+    "tax_basis": null,
+    "evidence": {}
+  },
+  "quotes": [
+    {
+      "file": "Cellutech_C-31.pdf",
+      "expected_verdict": "COMPLIANT",
+      "expect_rejected": false,
+      "truth": {
+        "supplier_name": "Cellutech Industries",
+        "source_document": "",
+        "quotation_number": null,
+        "quotation_date": "2026-11-14",
+        "valid_until": "2026-12-14",
+        "product_name": null,
+        "quantity": 5.0,
+        "unit": "MT",
+        "unit_price": 195000.0,
+        "price_per": "MT",
+        "currency": "INR",
+        "tax_status": "exclusive",
+        "tax_rate_percent": 12.0,
+        "freight_cost": null,
+        "delivery_days": 14,
+        "payment_terms": "45 days after delivery",
+        "specifications": [
+          {
+            "name": "moisture",
+            "value": 4.2,
+            "unit": "%",
+            "evidence": null
+          }
+        ],
+        "certificates": [
+          "Certificate of Analysis"
+        ],
+        "exclusions": [],
+        "conflicts": [],
+        "verification_warnings": [],
+        "evidence": {},
+        "extraction_status": "extracted"
+      }
+    },
+    {
+      "file": "FibreChem_F-32.pdf",
+      "expected_verdict": "COMPLIANT",
+      "expect_rejected": false,
+      "truth": {
+        "supplier_name": "FibreChem Pvt Ltd",
+        "source_document": "",
+        "quotation_number": null,
+        "quotation_date": "2026-11-14",
+        "valid_until": "2026-12-14",
+        "product_name": null,
+        "quantity": 5000.0,
+        "unit": "kg",
+        "unit_price": 0.21,
+        "price_per": "g",
+        "currency": "INR",
+        "tax_status": "exclusive",
+        "tax_rate_percent": 12.0,
+        "freight_cost": null,
+        "delivery_days": 18,
+        "payment_terms": "45 days after delivery",
+        "specifications": [
+          {
+            "name": "moisture",
+            "value": 3.8,
+            "unit": "%",
+            "evidence": null
+          }
+        ],
+        "certificates": [
+          "Certificate of Analysis"
+        ],
+        "exclusions": [],
+        "conflicts": [],
+        "verification_warnings": [],
+        "evidence": {},
+        "extraction_status": "extracted"
+      }
+    }
+  ],
+  "expect_recommended": "Cellutech Industries"
+}

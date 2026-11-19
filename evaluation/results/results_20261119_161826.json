@@ -1,0 +1,407 @@
+{
+  "summary": {
+    "cases": 1,
+    "extraction_accuracy": 100.0,
+    "fields_total": 38,
+    "verdict_accuracy": 100.0,
+    "verdicts_total": 2,
+    "check_agreement": 100.0,
+    "checks_total": 10,
+    "recommendation_accuracy": 100.0,
+    "missing_precision": null,
+    "missing_recall": null,
+    "bad_files_rejected": "0/0",
+    "avg_seconds_per_case": 30.3,
+    "ai_calls": 3,
+    "ai_calls_failed": 0,
+    "repair_retries": 0,
+    "rate_limit_waits": 0,
+    "models_used": [
+      "gemini:gemini-3.5-flash-lite"
+    ],
+    "crashed_cases": []
+  },
+  "results": [
+    {
+      "case": "TC-03",
+      "title": "Different measurement units (price per MT vs per gram)",
+      "outcome": "ok",
+      "error": null,
+      "seconds": 30.3,
+      "ai_calls": 3,
+      "ai_calls_failed": 0,
+      "repair_retries": 0,
+      "rate_limit_waits": 0,
+      "models_used": [
+        "gemini:gemini-3.5-flash-lite"
+      ],
+      "vision_calls": 0,
+      "fields": [
+        {
+          "scope": "RFQ",
+          "field": "product_name",
+          "expected": "Microcrystalline Cellulose",
+          "got": "Microcrystalline Cellulose PH-102",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_quantity",
+          "expected": "5.0",
+          "got": "5.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "unit",
+          "expected": "MT",
+          "got": "MT",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "max_delivery_days",
+          "expected": "21",
+          "got": "21",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "payment_days",
+          "expected": "45",
+          "got": "45",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "required_certificates",
+          "expected": "['coa']",
+          "got": "['coa']",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.operator",
+          "expected": "<=",
+          "got": "<=",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.value",
+          "expected": "5.0",
+          "got": "5.0",
+          "ok": true
+        },
+        {
+          "scope": "RFQ",
+          "field": "req:moisture.mandatory",
+          "expected": "True",
+          "got": "True",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "supplier_name",
+          "expected": "Cellutech Industries",
+          "got": "Cellutech Industries",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "unit_price",
+          "expected": "195000.0",
+          "got": "195000.0",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "price_per",
+          "expected": "MT",
+          "got": "MT",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "tax_rate_percent",
+          "expected": "12.0",
+          "got": "12.0",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "delivery_days",
+          "expected": "14",
+          "got": "14",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "quantity",
+          "expected": "5.0 MT",
+          "got": "5.0 MT",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "payment_days",
+          "expected": "45",
+          "got": "45",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "certificates",
+          "expected": "['coa']",
+          "got": "['coa']",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "Cellutech Industries",
+          "field": "spec:moisture",
+          "expected": "4.2",
+          "got": "4.2",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "supplier_name",
+          "expected": "FibreChem Pvt Ltd",
+          "got": "FibreChem Pvt Ltd",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "unit_price",
+          "expected": "0.21",
+          "got": "0.21",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "price_per",
+          "expected": "g",
+          "got": "gram",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "currency",
+          "expected": "INR",
+          "got": "INR",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "tax_status",
+          "expected": "exclusive",
+          "got": "exclusive",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "tax_rate_percent",
+          "expected": "12.0",
+          "got": "12.0",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "delivery_days",
+          "expected": "18",
+          "got": "18",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "valid_until",
+          "expected": "2026-12-14",
+          "got": "2026-12-14",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "quotation_date",
+          "expected": "2026-11-14",
+          "got": "2026-11-14",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "quantity",
+          "expected": "5000.0 kg",
+          "got": "5000.0 kg",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "payment_days",
+          "expected": "45",
+          "got": "45",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "certificates",
+          "expected": "['coa']",
+          "got": "['coa']",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "conflict_flagged",
+          "expected": "False",
+          "got": "False",
+          "ok": true
+        },
+        {
+          "scope": "FibreChem Pvt Ltd",
+          "field": "spec:moisture",
+          "expected": "3.8",
+          "got": "3.8",
+          "ok": true
+        }
+      ],
+      "decisions": [
+        {
+          "supplier": "Cellutech Industries",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "Cellutech Industries",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Cellutech Industries",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Cellutech Industries",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Cellutech Industries",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "Cellutech Industries",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "verdict",
+          "expected": "COMPLIANT",
+          "got": "COMPLIANT",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "check:moisture",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "check:certificate: Certificate of Analysis",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "check:delivery_days",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "check:quotation_validity",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "type": "check:price",
+          "expected": "PASS",
+          "got": "PASS",
+          "ok": true
+        }
+      ],
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "recommendation": {
+        "expected": "Cellutech Industries",
+        "got": "Cellutech Industries",
+        "ok": true
+      },
+      "rejected": {},
+      "notes": []
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+[server]
+maxUploadSize = 15          # MB, same limit as the document parser
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "viewer"      # hides the developer "Deploy" menu for business users
+
+[theme]
+base = "light"
+primaryColor = "#0E6E6B"
+backgroundColor = "#F7F9FC"
+secondaryBackgroundColor = "#EDF1F6"
+textColor = "#14213D"
