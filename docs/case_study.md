@@ -93,10 +93,18 @@ Across 10 test RFQs with 21 quotes:
 | Broken files rejected with a clear message | 2 of 2 | all |
 | Processing time | 31.7 seconds per RFQ on average | |
 | Time saved compared with doing it by hand | about 77% (estimated: 25 min down to 5.7 min) | at least half |
+| Same cases with a plain AI prompt instead (measured) | 85.7% verdicts, 90% recommendations | |
 
 In a walkthrough with a stand-in user, a full RFQ with four suppliers and one broken file went from upload to
 an approved decision in about eight minutes, review included. I noted 13 things that confused or slowed them
 down and changed something for each ([user_feedback.md](user_feedback.md)).
+
+**Compared with just asking an AI.** I also ran the same 10 cases through one plain prompt, the way a buyer would
+paste quotes into a chat assistant. It got every price right, which surprised me, but 3 of 21 verdicts and 1 of 10
+recommendations wrong. The costly one: it worked out a tax-inclusive price correctly and then passed over that
+supplier anyway, recommending one that cost ₹50,000 more on the order. It also quietly settled a contradiction
+in a quote without saying there was one. The value of the system isn't better reading; it's applying the same
+policy every time and showing where every number came from.
 
 ## What went wrong, and what I learned
 

@@ -103,7 +103,40 @@ The evaluation ran on Gemini's free tier, so the actual cost was nothing. At Gem
 (3,842 input and 2,729 output tokens, measured) costs about **$0.008**, so under one US cent per RFQ.
 From now on every evaluation run reports this per RFQ in `latest.md`.
 
-## 6. Baseline - manual process (estimated, not measured)
+## 6. Baselines
+
+### 6a. Plain AI, measured (the "just ask ChatGPT" way)
+
+The same 10 cases and the same models, but one plain prompt per RFQ with all the documents pasted in, the way
+a buyer would use a chat assistant. No rules, no source lines, no checks. It was scored against the same ground
+truth (`python -m evaluation.plain_ai_baseline`, 20 Nov 2026, `evaluation/results/plain_ai_latest.md`).
+The test was generous to the chat model: it got clean text for every readable file, including the scan.
+
+| | Plain AI | This system |
+|---|---|---|
+| Supplier verdict correct | 85.7% (18 of 21) | 100% (21 of 21) |
+| Recommendation correct | 90% (9 of 10) | 100% (10 of 10) |
+| Price per unit, excl. tax | 100% | 99.5% of all fields |
+| Problem quotes flagged in some way | 100% | 100% |
+| Every value traceable to its source line | no | yes |
+
+The plain AI was better than I expected: it got every price right and noticed every problem quote. Its three
+misses were all judgement calls in the trap cases:
+
+- **TC-09 (a real, costly error).** It took GST out of Theta's tax-inclusive price correctly (180 per kg), then
+  still marked Theta as needing clarification because the quote included GST, and recommended Acme at 185.
+  On 10,000 kg that is **₹50,000 more** for the same material, with no requirement missed.
+- **TC-05.** Sigma's quote gives two purity values (99.8% in the quote, 99.2% in the attached certificate).
+  The plain AI picked the lower one and rejected Sigma. That's a reasonable reading, but it settled a
+  contradiction on its own and the buyer would never know there was one. The system flags the conflict and asks.
+- **TC-08.** It marked an expired quote as not compliant, where the system asks the supplier to re-validate.
+  That's a policy difference rather than an error; the point is that the plain AI picks its own policy each time.
+
+What this says: a chat model is a strong reader. Where it falls down is applying a consistent policy and
+showing its working. That's what the rules, source lines and evidence check add. The gap is real but small, on
+10 clean synthetic cases from one run, so I wouldn't claim more than that.
+
+### 6b. Manual process (estimated, not measured)
 
 **These manual times are an estimate, not a stopwatch measurement.** There wasn't time to time a buyer doing the
 cases by hand before the deadline, so I built a simple task-time model from what each case actually contains

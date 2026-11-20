@@ -15,7 +15,9 @@ and every verdict comes with a reason. A person approves the supplier, and that 
 check the values against their source lines, and approve. You get a PDF and Excel report at the end.
 
 **How well it works:** on 10 test RFQs (21 quotes) it got 99.5% of fields right, every supplier verdict
-right and every recommendation right, and it caught every piece of missing information. The details,
+right and every recommendation right, and it caught every piece of missing information. The same cases
+pasted into a plain AI prompt got 85.7% of verdicts and 9 of 10 recommendations right; its one wrong pick
+would have cost ₹50,000 more on the order. The details,
 including where it went wrong, are in the [evaluation report](docs/evaluation_report.md).
 
 ## Getting started
