@@ -25,6 +25,9 @@ from evaluation.cases import TODAY, build_cases
 
 ROOT = Path(__file__).resolve().parent
 DATASET, RESULTS = ROOT / "dataset", ROOT / "results"
+# Gemini 2.5 Flash list prices in USD per million tokens (ai.google.dev, checked Nov 2026). Override in .env.
+PRICE_IN = float(__import__("os").getenv("PRICE_INPUT_PER_M", "0.30"))
+PRICE_OUT = float(__import__("os").getenv("PRICE_OUTPUT_PER_M", "2.50"))
 TARGETS = {"extraction_accuracy": 95.0, "verdict_accuracy": 95.0, "check_agreement": 95.0, "missing_recall": 90.0}
 MISSING = (CheckStatus.UNKNOWN, CheckStatus.REVIEW_REQUIRED)
 
@@ -239,6 +242,7 @@ def run_case(case: dict, mode: str = "real", out_dir: Path = DATASET) -> dict:
             "seconds": seconds, "ai_calls": m.get("ai_calls", 0), "ai_calls_failed": m.get("ai_calls_failed", 0),
             "repair_retries": m.get("ai_repair_retries", 0), "rate_limit_waits": m.get("rate_limit_waits", 0),
             "models_used": m.get("models_used", []), "vision_calls": m.get("vision_calls", 0),
+            "input_tokens": m.get("input_tokens", 0), "output_tokens": m.get("output_tokens", 0),
             "fields": fields, "decisions": decisions, "missing": {"tp": tp, "fp": fp, "fn": fn},
             "recommendation": {"expected": case["expect_recommended"], "got": got_rec or None, "ok": rec_ok},
             "rejected": rejected, "notes": notes}
@@ -273,7 +277,18 @@ def summarise(results: list) -> dict:
             "repair_retries": sum(r["repair_retries"] for r in results),
             "rate_limit_waits": sum(r["rate_limit_waits"] for r in results),
             "models_used": sorted({m for r in results for m in r["models_used"]}),
-            "crashed_cases": [r["case"] for r in results if r["outcome"] == "crashed"]}
+            "crashed_cases": [r["case"] for r in results if r["outcome"] == "crashed"],
+            "input_tokens": sum(r.get("input_tokens", 0) for r in results),
+            "output_tokens": sum(r.get("output_tokens", 0) for r in results)}
+
+
+def cost_line(summary: dict) -> str:
+    tin, tout, n = summary.get("input_tokens", 0), summary.get("output_tokens", 0), summary["cases"] or 1
+    if not (tin or tout):
+        return "| AI cost per RFQ | not recorded in this run (token counting was added later) | - | |"
+    usd = (tin * PRICE_IN + tout * PRICE_OUT) / 1e6 / n
+    return (f"| AI cost per RFQ (at Gemini 2.5 Flash list prices) | ${usd:.4f} "
+            f"({tin // n:,} input + {tout // n:,} output tokens) | - | |")
 
 
 def load_baseline() -> dict:
@@ -310,7 +325,8 @@ def report_md(summary: dict, results: list, baseline: dict) -> str:
              f"| Missing-info detection - recall | {_show(summary['missing_recall'])} | 90% | {mark('missing_recall')} |",
              f"| Missing-info detection - precision | {_show(summary['missing_precision'])} | - | |",
              f"| Bad files rejected with a message | {summary['bad_files_rejected']} | all | |",
-             f"| Avg processing time per case | {summary['avg_seconds_per_case']} s | - | |", "",
+             f"| Avg processing time per case | {summary['avg_seconds_per_case']} s | - | |",
+             cost_line(summary), "",
              "## Per case", "", "| Case | Scenario | Fields | Verdicts | Recommendation | Time | AI calls | Notes |",
              "|---|---|---|---|---|---|---|---|"]
     for r in results:

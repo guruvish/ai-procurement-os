@@ -197,3 +197,13 @@ regression test that now guards against each one. Newest at the bottom.
   mistaken for the headline result, and removed the Claude backup from `AI_PROVIDER_ORDER` until it has credit.
 - **What would fix it properly:** a paid tier or a second working provider, and retrying failed documents once
   after a pause before giving up. The user can already do this with *Read the remaining documents*.
+
+## F15 - The tests failed on a fresh copy of the repository
+- **Observed (review against the brief, 20 Nov 2026):** on a new clone with no `.env`, `pytest` stopped at the first
+  import with "No AI key found", so none of the tests ran. On my machine they passed only because `.env` existed.
+- **Root cause:** the startup check that refuses to run without an AI key is right for the app, but the tests import
+  the same configuration, and they never call an AI service.
+- **Fix:** `tests/conftest.py` gives the tests a placeholder key when no `.env` exists. The app itself still refuses
+  to start without a real key.
+- **Lesson:** "it works on my machine" isn't reproducibility. A reviewer's first step is a fresh clone, so that's
+  how it should be tested.

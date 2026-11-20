@@ -7,7 +7,7 @@ For whoever installs the app, sets it up and keeps it running.
 python -m venv .venv && .venv\Scripts\activate      # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
 copy .env.example .env                               # then edit .env
-pytest -q                                            # 87 passed = healthy install
+pytest -q                                            # 90 passed = healthy install
 ```
 Python 3.10+. pytest is pinned `<9` (9.2 crashed on Python 3.10.0 - F4).
 

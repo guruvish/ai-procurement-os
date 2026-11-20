@@ -11,7 +11,7 @@
 | **Anthropic Claude API** (`claude-haiku-5-5`) | Configured as an optional backup provider; not used in the evaluation (account without credit) |
 
 ## 2. Work delegated to AI
-- Writing the code for every module, the 87 automated tests and the evaluation harness.
+- Writing the code for every module, the 90 automated tests and the evaluation harness.
 - Generating the 10 synthetic test cases and their ground truth, the sample documents and the 3D illustration (code-generated SVG).
 - Diagnosing failures from my terminal output and screenshots, and proposing fixes.
 - First drafts of all documentation, including this note. I reviewed and edited the personal sections.
@@ -22,7 +22,7 @@
   case study in plainer language. The facts and figures were left as they were.
 
 ## 3. How I verified AI-generated results
-1. **Ran everything myself after every step**: applied each patch, ran `pytest -q` (from 5 tests at the first step to 87),
+1. **Ran everything myself after every step**: applied each patch, ran `pytest -q` (from 5 tests at the first step to 90),
    and pasted the output back. Nothing was accepted on the basis of "it should work".
 2. **Checked the AI extraction by hand** against the source documents in early runs (e.g. Step 6: purity/moisture
    mandatory flags, Rs. -> INR, "GST 18% extra" -> exclusive, "3 weeks" -> 21 days, validity date).

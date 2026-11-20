@@ -97,6 +97,12 @@ affected comparison as incomplete instead of presenting it as finished. The resu
 `evaluation/results/outage_run/` and described in [failure_log.md](failure_log.md#f14---every-ai-provider-unavailable-at-once-during-a-re-run).
 The headline results in section 4 come from the 15:26 run, when the providers were available.
 
+### Cost
+The evaluation ran on Gemini's free tier, so the actual cost was nothing. At Gemini 2.5 Flash list prices
+($0.30 per million input tokens and $2.50 per million output tokens), a three-quote RFQ like TC-01
+(3,842 input and 2,729 output tokens, measured) costs about **$0.008**, so under one US cent per RFQ.
+From now on every evaluation run reports this per RFQ in `latest.md`.
+
 ## 6. Baseline - manual process (estimated, not measured)
 
 **These manual times are an estimate, not a stopwatch measurement.** There wasn't time to time a buyer doing the

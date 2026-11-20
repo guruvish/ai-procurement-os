@@ -21,6 +21,18 @@ working rarely gets written down. You check each mandatory requirement by eye, w
 because a quote that simply doesn't mention something looks the same as one that complies. Then you chase
 the gaps with one-off emails, and justify the final choice from memory and a spreadsheet.
 
+### The workflow today, step by step
+
+| | Today, by hand | With RFQ Evaluator |
+|---|---|---|
+| **Trigger** | Quotes come back by email after an RFQ goes out, usually 3 to 6 per RFQ, for every purchase | Same |
+| **Input** | The RFQ plus quotes as PDF, Excel, Word, sometimes scans, each laid out differently | The same files, uploaded together |
+| **Judgment** | Which values matter, whether a quote meets each requirement, what "not mentioned" means | The AI reads; fixed rules judge each requirement; "not stated" is never a pass |
+| **Tool** | Email, a PDF reader, Excel, a calculator | The app (AI model, rule engine, SQLite) |
+| **Approval** | Buyer, sometimes with a manager, often justified from memory | Buyer approves in the app under their name; a note is required for exceptions |
+| **Output** | An Excel comparison and an email saying who won | Recommendation, PDF and Excel report, clarification emails, audit log |
+| **Exception** | A missing price, a contradiction or an unreadable file means emails back and forth, or gets missed | Flagged on screen with a drafted email; unreadable files are named straight away |
+
 Baseline: by a task-time estimate (not a stopwatch measurement), comparing three quotes by hand takes a buyer
 about 23 to 28 minutes per RFQ, against about 6 minutes with the system including review. The assumptions
 are in [evaluation_report.md §6](evaluation_report.md).

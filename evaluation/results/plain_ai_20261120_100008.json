@@ -1,0 +1,552 @@
+{
+  "summary": {
+    "cases": 10,
+    "suppliers": 21,
+    "verdict_accuracy": 85.7,
+    "price_accuracy": 100.0,
+    "recommendation_accuracy": 90.0,
+    "gap_recall": 100.0,
+    "failed_calls": 0
+  },
+  "results": [
+    {
+      "case": "TC-01",
+      "title": "Normal RFQ - three complete quotations (PDF, Excel, Word)",
+      "suppliers": [
+        {
+          "supplier": "Acme Chem Industries",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 185.0,
+          "got_price": 185.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        },
+        {
+          "supplier": "Delta Life Sciences",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 180.0,
+          "got_price": 180.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        },
+        {
+          "supplier": "Orion Pharma",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 190.0,
+          "got_price": 190.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        }
+      ],
+      "recommendation": {
+        "expected": "Delta Life Sciences",
+        "got": "Delta Life Sciences",
+        "ok": true
+      },
+      "model": "gemini:gemini-2.5-flash",
+      "raw": {
+        "suppliers": [
+          {
+            "name": "Acme Chem Industries",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 185.0,
+            "reason": "All technical specifications (Assay 99.8% >= 99.5%, Loss on drying 0.3% <= 0.5%), document requirements (CoA, GMP), delivery (21 days <= 30 days), and payment terms (30 days after delivery) are met. Price is quoted in INR per kg exclusive of GST as requested."
+          },
+          {
+            "name": "Delta Life Sciences",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 180.0,
+            "reason": "All technical specifications (Assay 99.8% >= 99.5%, Loss on drying 0.3% <= 0.5%), document requirements (CoA, GMP), delivery (21 days <= 30 days), and payment terms (30 days after delivery) are met. Price is quoted in INR per kg exclusive of GST as requested."
+          },
+          {
+            "name": "Orion Pharma",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 190.0,
+            "reason": "All technical specifications (Assay 99.8% >= 99.5%, Loss on drying 0.3% <= 0.5%), document requirements (CoA, GMP), delivery (21 days <= 30 days), and payment terms (30 days after delivery) are met. Price is quoted in INR per kg exclusive of GST as requested."
+          }
+        ],
+        "recommended_supplier": "Delta Life Sciences"
+      }
+    },
+    {
+      "case": "TC-02",
+      "title": "Supplier quotation missing price",
+      "suppliers": [
+        {
+          "supplier": "Acme Chem Industries",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 185.0,
+          "got_price": 185.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        },
+        {
+          "supplier": "Gamma Organics Ltd",
+          "expected_verdict": "NEEDS_CLARIFICATION",
+          "got_verdict": "NEEDS_CLARIFICATION",
+          "verdict_ok": true,
+          "expected_price": null,
+          "got_price": null,
+          "price_ok": true,
+          "flagged_gap": true,
+          "gap_expected": true
+        }
+      ],
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "model": "gemini:gemini-3.5-flash-lite",
+      "raw": {
+        "suppliers": [
+          {
+            "name": "Acme Chem Industries",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 185.0,
+            "reason": "Meets all technical, document, delivery, payment, and pricing requirements."
+          },
+          {
+            "name": "Gamma Organics Ltd",
+            "verdict": "NEEDS_CLARIFICATION",
+            "price_per_unit_excl_tax": null,
+            "reason": "Price is not quoted and to be confirmed after sample approval, which is missing required pricing."
+          }
+        ],
+        "recommended_supplier": "Acme Chem Industries"
+      }
+    },
+    {
+      "case": "TC-03",
+      "title": "Different measurement units (price per MT vs per gram)",
+      "suppliers": [
+        {
+          "supplier": "Cellutech Industries",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 195000.0,
+          "got_price": 195000.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        },
+        {
+          "supplier": "FibreChem Pvt Ltd",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 210000.0,
+          "got_price": 210000.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        }
+      ],
+      "recommendation": {
+        "expected": "Cellutech Industries",
+        "got": "Cellutech Industries",
+        "ok": true
+      },
+      "model": "gemini:gemini-2.5-flash",
+      "raw": {
+        "suppliers": [
+          {
+            "name": "Cellutech Industries",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 195000.0,
+            "reason": "All requirements are met. The product, quantity, technical specification (Loss on drying 4.2% < 5.0%), delivery (2 weeks = 14 days < 21 days), payment terms, and document submission (CoA) are compliant. Price is INR 1,95,000 per MT excluding GST."
+          },
+          {
+            "name": "FibreChem Pvt Ltd",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 210000.0,
+            "reason": "All requirements are met. The product, quantity (5,000 kg = 5 MT), technical specification (LOD 3.8% < 5.0%), delivery (18 days < 21 days), payment terms, and document submission (CoA) are compliant. Price is INR 0.21 per gram, which converts to INR 210 per kg or INR 2,10,000 per MT excluding GST."
+          }
+        ],
+        "recommended_supplier": "Cellutech Industries"
+      }
+    },
+    {
+      "case": "TC-04",
+      "title": "Scanned quotation PDF (image only, no text layer)",
+      "suppliers": [
+        {
+          "supplier": "Acme Chem Industries",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 185.0,
+          "got_price": 185.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        },
+        {
+          "supplier": "Kappa Fine Chemicals",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 182.0,
+          "got_price": 182.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        }
+      ],
+      "recommendation": {
+        "expected": "Kappa Fine Chemicals",
+        "got": "Kappa Fine Chemicals",
+        "ok": true
+      },
+      "model": "gemini:gemini-3.5-flash-lite",
+      "raw": {
+        "suppliers": [
+          {
+            "name": "Acme Chem Industries",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 185.0,
+            "reason": "Meets all technical specifications, delivery timeline, payment terms, and required documentation."
+          },
+          {
+            "name": "Kappa Fine Chemicals",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 182.0,
+            "reason": "Meets all technical specifications, delivery timeline, payment terms, and required documentation."
+          }
+        ],
+        "recommended_supplier": "Kappa Fine Chemicals"
+      }
+    },
+    {
+      "case": "TC-05",
+      "title": "Conflicting purity values in one quotation",
+      "suppliers": [
+        {
+          "supplier": "Acme Chem Industries",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 185.0,
+          "got_price": 185.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        },
+        {
+          "supplier": "Sigma Actives",
+          "expected_verdict": "NEEDS_CLARIFICATION",
+          "got_verdict": "NOT_COMPLIANT",
+          "verdict_ok": false,
+          "expected_price": 178.0,
+          "got_price": 178.0,
+          "price_ok": true,
+          "flagged_gap": true,
+          "gap_expected": true
+        }
+      ],
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "model": "gemini:gemini-3.5-flash-lite",
+      "raw": {
+        "suppliers": [
+          {
+            "name": "Acme Chem Industries",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 185.0,
+            "reason": "Meets all technical and commercial requirements, including assay (99.8%) and loss on drying (0.3%)."
+          },
+          {
+            "name": "Sigma Actives",
+            "verdict": "NOT_COMPLIANT",
+            "price_per_unit_excl_tax": 178.0,
+            "reason": "Failed technical requirements as the attached Certificate of Analysis shows an assay of 99.2%, which is below the minimum required 99.5%."
+          }
+        ],
+        "recommended_supplier": "Acme Chem Industries"
+      }
+    },
+    {
+      "case": "TC-06",
+      "title": "Missing Certificate of Analysis",
+      "suppliers": [
+        {
+          "supplier": "Acme Chem Industries",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 185.0,
+          "got_price": 185.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        },
+        {
+          "supplier": "Beta Pharma Chem",
+          "expected_verdict": "NEEDS_CLARIFICATION",
+          "got_verdict": "NEEDS_CLARIFICATION",
+          "verdict_ok": true,
+          "expected_price": 176.0,
+          "got_price": 176.0,
+          "price_ok": true,
+          "flagged_gap": true,
+          "gap_expected": true
+        }
+      ],
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "model": "gemini:gemini-3.5-flash-lite",
+      "raw": {
+        "suppliers": [
+          {
+            "name": "Acme Chem Industries",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 185.0,
+            "reason": "Meets all technical, delivery, payment, and document requirements."
+          },
+          {
+            "name": "Beta Pharma Chem",
+            "verdict": "NEEDS_CLARIFICATION",
+            "price_per_unit_excl_tax": 176.0,
+            "reason": "Meets technical, delivery, and payment terms, but does not explicitly confirm that a Certificate of Analysis (CoA) will be provided with every batch."
+          }
+        ],
+        "recommended_supplier": "Acme Chem Industries"
+      }
+    },
+    {
+      "case": "TC-07",
+      "title": "Supplier delivery exceeds the limit",
+      "suppliers": [
+        {
+          "supplier": "Acme Chem Industries",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 185.0,
+          "got_price": 185.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        },
+        {
+          "supplier": "Zeta Labs",
+          "expected_verdict": "NOT_COMPLIANT",
+          "got_verdict": "NOT_COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 170.0,
+          "got_price": 170.0,
+          "price_ok": true,
+          "flagged_gap": true,
+          "gap_expected": true
+        }
+      ],
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "model": "gemini:gemini-2.5-flash",
+      "raw": {
+        "suppliers": [
+          {
+            "name": "Acme Chem Industries",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 185.0,
+            "reason": "All technical specifications (Assay 99.8%, Loss on drying 0.3%), delivery (21 days), payment terms (30 days after delivery), and document requirements (CoA, GMP) are met as per the RFQ."
+          },
+          {
+            "name": "Zeta Labs",
+            "verdict": "NOT_COMPLIANT",
+            "price_per_unit_excl_tax": 170.0,
+            "reason": "The quoted delivery period of 6 weeks (42 days) exceeds the RFQ requirement of 'within 30 days of purchase order'."
+          }
+        ],
+        "recommended_supplier": "Acme Chem Industries"
+      }
+    },
+    {
+      "case": "TC-08",
+      "title": "Quotation has expired",
+      "suppliers": [
+        {
+          "supplier": "Acme Chem Industries",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 185.0,
+          "got_price": 185.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        },
+        {
+          "supplier": "Omega Drugs",
+          "expected_verdict": "NEEDS_CLARIFICATION",
+          "got_verdict": "NOT_COMPLIANT",
+          "verdict_ok": false,
+          "expected_price": 174.0,
+          "got_price": 174.0,
+          "price_ok": true,
+          "flagged_gap": true,
+          "gap_expected": true
+        }
+      ],
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "model": "gemini:gemini-3.5-flash-lite",
+      "raw": {
+        "suppliers": [
+          {
+            "name": "Acme Chem Industries",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 185.0,
+            "reason": "Meets all technical, document, delivery, and payment requirements. Quotation is valid."
+          },
+          {
+            "name": "Omega Drugs",
+            "verdict": "NOT_COMPLIANT",
+            "price_per_unit_excl_tax": 174.0,
+            "reason": "Quotation date is 21/09/2026 and validity expired on 21/10/2026, which is prior to the RFQ date and current date."
+          }
+        ],
+        "recommended_supplier": "Acme Chem Industries"
+      }
+    },
+    {
+      "case": "TC-09",
+      "title": "GST treatment differs (inclusive / exclusive / unclear)",
+      "suppliers": [
+        {
+          "supplier": "Acme Chem Industries",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 185.0,
+          "got_price": 185.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        },
+        {
+          "supplier": "Theta Healthcare",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "NEEDS_CLARIFICATION",
+          "verdict_ok": false,
+          "expected_price": 180.0,
+          "got_price": 180.0,
+          "price_ok": true,
+          "flagged_gap": true,
+          "gap_expected": false
+        },
+        {
+          "supplier": "Lambda Chem",
+          "expected_verdict": "NEEDS_CLARIFICATION",
+          "got_verdict": "NEEDS_CLARIFICATION",
+          "verdict_ok": true,
+          "expected_price": 175.0,
+          "got_price": 175.0,
+          "price_ok": true,
+          "flagged_gap": true,
+          "gap_expected": true
+        }
+      ],
+      "recommendation": {
+        "expected": "Theta Healthcare",
+        "got": "Acme Chem Industries",
+        "ok": false
+      },
+      "model": "gemini:gemini-3.5-flash-lite",
+      "raw": {
+        "suppliers": [
+          {
+            "name": "Acme Chem Industries",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 185.0,
+            "reason": "Meets all technical specifications, delivery, payment terms, and provides required documentation. Price is explicitly given excluding GST."
+          },
+          {
+            "name": "Theta Healthcare",
+            "verdict": "NEEDS_CLARIFICATION",
+            "price_per_unit_excl_tax": 180.0,
+            "reason": "Meets all technical and commercial requirements, but quoted price is inclusive of GST (18%). Back-calculating gives INR 180 per kg excluding GST, but the exact exclusive price should be clarified by the supplier."
+          },
+          {
+            "name": "Lambda Chem",
+            "verdict": "NEEDS_CLARIFICATION",
+            "price_per_unit_excl_tax": 175.0,
+            "reason": "Meets all technical and commercial requirements, but fails to explicitly state whether the quoted price of INR 175 per kg is exclusive of GST as requested in the RFQ."
+          }
+        ],
+        "recommended_supplier": "Acme Chem Industries"
+      }
+    },
+    {
+      "case": "TC-10",
+      "title": "Corrupted / wrong documents among valid ones",
+      "suppliers": [
+        {
+          "supplier": "Acme Chem Industries",
+          "expected_verdict": "COMPLIANT",
+          "got_verdict": "COMPLIANT",
+          "verdict_ok": true,
+          "expected_price": 185.0,
+          "got_price": 185.0,
+          "price_ok": true,
+          "flagged_gap": false,
+          "gap_expected": false
+        }
+      ],
+      "recommendation": {
+        "expected": "Acme Chem Industries",
+        "got": "Acme Chem Industries",
+        "ok": true
+      },
+      "model": "gemini:gemini-3.5-flash-lite",
+      "raw": {
+        "suppliers": [
+          {
+            "name": "Acme Chem Industries",
+            "verdict": "COMPLIANT",
+            "price_per_unit_excl_tax": 185.0,
+            "reason": "Meets all technical requirements, provides required documents, and adheres to delivery, payment terms, and currency/tax specifications."
+          },
+          {
+            "name": "Epsilon",
+            "verdict": "NOT_COMPLIANT",
+            "price_per_unit_excl_tax": null,
+            "reason": "The file could not be opened, so no quotation details or compliance could be verified."
+          },
+          {
+            "name": "Notes",
+            "verdict": "NOT_COMPLIANT",
+            "price_per_unit_excl_tax": null,
+            "reason": "The file could not be opened, so no quotation details or compliance could be verified."
+          }
+        ],
+        "recommended_supplier": "Acme Chem Industries"
+      }
+    }
+  ]
+}

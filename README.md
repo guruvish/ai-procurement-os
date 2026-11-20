@@ -84,17 +84,18 @@ streamlit_app.py the interface
 run.py           starts the app
 evaluation/      10 test cases with known answers, plus the scorer
 scripts/         check_ai.py and make_sample_data.py
-tests/           87 offline tests (AI and Google are faked)
+tests/           90 offline tests (AI and Google are faked; no key needed)
 docs/            guides, the evaluation report, the failure log and the case study
 ```
 
 ## Tests and evaluation
 
 ```bash
-pytest -q                                          # 87 tests, offline, about a minute
+pytest -q                                          # 90 tests, offline, about a minute
 python -m evaluation.run_evaluation                # all 10 cases against the real models (~35 AI calls, ~6 min)
 python -m evaluation.run_evaluation --cases TC-03  # a single case
 python -m evaluation.run_evaluation --report-only  # rebuild the report, e.g. after filling in baseline.csv
+python -m evaluation.plain_ai_baseline            # the same 10 cases with a plain AI prompt, for comparison
 ```
 
 ## Settings
