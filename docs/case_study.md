@@ -156,6 +156,6 @@ products, and add a FastAPI layer with logins so a team could share it. Google D
 
 ## Links
 
-Repository: `[FILL]`. Demo video: `[FILL]`.
+Repository: https://github.com/guruvish/ai-procurement-os. Demo video (5 min): https://www.loom.com/share/8a2f492a08744692ad3a8510b390be21
 See also the [evaluation report](evaluation_report.md), the [AI collaboration note](ai_collaboration_note.md),
 the [user guide](user_guide.md) and the [operator runbook](operator_runbook.md).

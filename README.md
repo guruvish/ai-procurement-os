@@ -9,6 +9,8 @@ The split is deliberate. An AI model reads the documents and fills in a fixed fo
 value came from. Plain, tested Python does the comparing, so the same quotes always give the same result
 and every verdict comes with a reason. A person approves the supplier, and that approval is logged.
 
+**Demo video (5 minutes):** https://www.loom.com/share/8a2f492a08744692ad3a8510b390be21
+
 **Who it's for:** a purchase or procurement executive comparing three to six quotes against an RFQ.
 
 **What changes:** instead of retyping every quote into Excel, you upload the files, wait about half a minute,
