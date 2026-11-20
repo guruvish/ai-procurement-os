@@ -1,26 +1,34 @@
-# Proxy-user test & feedback (Day 3-4)
+# Stand-in user test and feedback
 
-**Tester:** Kavuturu Guru Vishnu (acting as procurement executive), 2026-11-19, 13:05-13:15 IST.
-**Task:** create RFQ-2026-001, upload RFQ + 5 quotations (incl. one corrupted), process, review, decide.
-**Setup:** `python run.py`, sample files from `scripts/make_sample_data.py`, no help from the builder.
+I didn't have a real buyer available during the sprint, so I acted as one myself. On 19 November, from 13:05 to
+13:15, I took the role of a procurement executive using the app for the first time. The task: create RFQ-2026-001,
+upload the RFQ and five quotes (one of them deliberately broken), let it read them, review the results and make a
+decision. I started the app with `python run.py`, used the sample files from `scripts/make_sample_data.py`, and
+didn't look at the code.
 
-| # | Observation (what the user saw / did) | Severity | Change made (patch step 10) |
+Being both builder and tester isn't ideal, since I know how it's meant to work. So I wrote down every moment I
+hesitated, got confused or had to guess, and changed something for each one. The first ten came from that session; the rest came up as I
+kept using it over the following day.
+
+| # | What happened | How much it mattered | What I changed |
 |---|---|---|---|
-| U1 | "Please fill the RFQ number and upload..." - did not say WHICH field was missing (quotations were) | Medium | Message now names the missing items, e.g. "Still missing: **Supplier quotations**" |
-| U2 | Six separate green "Uploaded ..." boxes pushed the tabs below the fold | Medium | One summary: "Uploaded 4 file(s): ...", one box for rejected files |
-| U3 | Error showed a technical term "(FileDataError)" | Low | Plain message: "seems damaged or incomplete - try downloading or saving it again"; technical detail goes to the log |
-| U4 | "Audit trail" tab hidden behind a scroll arrow | Low | Short tab names (① Documents ... 🧾 Audit) - all fit on one line |
-| U5 | 3 quotations failed with "Gemini API error 429" - unclear what to do | **High** | Rate-limit handling (F6); button changes to "Read the N remaining documents"; messages say exactly what to click |
-| U6 | Recommendation shown although 3 of 4 suppliers were missing | **Critical** | Incomplete banner + confirmation required (F7) |
-| U7 | Streamlit "Deploy" menu and promo pop-up confused the user | Low | `toolbarMode = "viewer"` hides developer controls |
-| U9 | Typed name during processing -> run silently stopped, button greyed out, header kept saying "AI is reading" | **High** | Background processing job + Resume (F10) |
-| U10 | "Press Enter to apply" hint invisible in sidebar; disabled buttons looked clickable; metric labels cut off ("Rate-limit ..."); link icons on headings | Low | Contrast fixed, disabled style, short labels with tooltips, heading anchors hidden |
-| U11 | Balloons after approval felt unprofessional for a premium client | Low | Calm "Decision recorded" card with an animated checkmark, approver and time; toast notification |
-| U12 | "Wants BI on suppliers, decision and risk" | Medium | New 📊 Insights tab (savings, gap to runner-up, compliance premium, decision robustness, price-vs-delivery, risk profile, scorecard), portfolio 📊 Analytics page, decision analysis + scorecard in PDF/Excel |
-| U13 | Reviewer name lost after every refresh | Low | Name kept in the page address (?user=) |
-| U8 | "Looks plain - should feel like a product" | Medium | New theme: gradient hero with animated isometric illustration, workflow stepper, supplier cards with a "Recommended" ribbon, coloured cost chart, live processing log |
+| U1 | The form said "please fill the RFQ number and upload…" without saying what was actually missing (it was the quotes) | Moderate | It now names what's missing, e.g. "Still needed: Supplier quotes" |
+| U2 | Six separate green "uploaded" boxes pushed the tabs off the screen | Moderate | One summary line for uploads, and one box for rejected files |
+| U3 | An error message included the technical term "FileDataError" | Minor | Plain wording ("this file seems damaged, try downloading it again"); the technical detail goes to the log |
+| U4 | The Audit tab was hidden behind a scroll arrow | Minor | Shorter tab names with icons, so all seven fit on one line |
+| U5 | Three quotes failed with "Gemini API error 429" and I didn't know what to do | Serious | Rate-limit handling (F6), and the button now says "Read the 3 remaining documents" |
+| U6 | A supplier was recommended although 3 of 4 quotes were missing | Critical | A clear "incomplete" warning, plus a confirmation and note before approving (F7) |
+| U7 | Streamlit's own "Deploy" menu and pop-ups were confusing | Minor | Developer controls hidden |
+| U8 | It looked plain, like a demo rather than a product | Moderate | A proper visual design; changed again later (U14) |
+| U9 | I typed my name while it was reading, the run silently stopped, and the button stayed greyed out | Serious | Processing moved to the background, with a Resume button (F10) |
+| U10 | The "press Enter" hint was invisible, disabled buttons looked clickable, some labels were cut off, and headings showed link icons | Minor | All four fixed |
+| U11 | Balloons floating up after approving felt wrong for a business tool | Minor | A calm "decision recorded" card showing who approved and when |
+| U12 | I wanted more on suppliers, the decision and the risks | Moderate | An Insights tab (savings, how close the runner-up is, what would change the decision, risk profile, scorecard), an Analytics page across all RFQs, and both added to the reports |
+| U13 | My name disappeared every time the page refreshed | Minor | The name is kept in the page address |
+| U14 | There was no way back to the previous page; clicking in the sidebar opened pages scrolled halfway down; and the text and docs read as stiff and machine-written | Moderate | A Back button that remembers where you came from, every page opening at the top, a calmer navy and teal design with new fonts, and all the on-screen text and guides rewritten in plain language |
 
-**What worked without help:** creating the evaluation, understanding the corrupted-file rejection,
-finding the source quote under each value, reading the compliance matrix, approving.
+**What worked without any help:** creating the evaluation, understanding why the broken file was rejected, finding
+the source line under each value, reading the comparison table, and approving.
 
-**Time:** create + upload ~3 min; AI processing 56 s; review to decision ~4 min.
+**How long it took:** about 3 minutes to create it and upload, 56 seconds for the reading, and about 4 minutes from
+reviewing to a decision.

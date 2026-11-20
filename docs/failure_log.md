@@ -1,209 +1,219 @@
-# Failure Log & Root-Cause Analysis
+# Failure log
 
-Real failures observed while building and running the system, with root cause, fix and the
-regression test that now guards against each one. Newest at the bottom.
+Everything that actually went wrong while I built, tested and ran this, in the order it happened. For each one:
+what I saw, why it happened, what I changed, and the test that now catches it if it comes back.
 
-| ID | Date | Where | Severity | Status |
-|----|------|-------|----------|--------|
-| F1 | 2026-11-19 | Supplier Analyst (Acme quote) | Low - self-recovered | Logging improved |
-| F2 | 2026-11-19 | Supplier Analyst (Gamma quote, price missing) | **High** - supplier dropped | Fixed + regression test |
-| F3 | 2026-11-19 | Workflow metrics | Medium - misleading metrics | Fixed + regression test |
-| F4 | 2026-11-19 | Test environment (pytest 9.2) | Medium - tests could not run | Pinned dependency |
-| F5 | 2026-11-19 | Windows antivirus vs pytest | Low - operator friction | Config change |
-| F6 | 2026-11-19 | Gemini free tier - HTTP 429 during proxy-user test | **High** - 3 of 4 suppliers not read | Fixed + regression tests |
-| F7 | 2026-11-19 | Recommendation on partial data looked complete | **Critical** - could mislead an approver | Fixed + regression test |
-| F8 | 2026-11-19 | Gemini 503 "model overloaded" - single provider = single point of failure | **High** - 3 of 4 suppliers not read (again) | Provider chain + regression tests |
-| F9 | 2026-11-19 | Configured fallback model retired by Google (404) | Medium - backup silently unusable | Pre-flight check script + new default |
-| F10 | 2026-11-19 | Processing killed by a page rerun (user typed during the run) | **High** - status stuck, run button disabled | Background job + resume + regression tests |
-| F11 | 2026-11-19 | Evaluation harness under-reported check agreement (85.7%) | Medium - wrong metric, system was right | Harness fixed + regression test |
-| F12 | 2026-11-19 | Per-minute 429 misread as "daily quota used up" | Medium - could stop a batch early | Quota-ID based detection + regression test |
-| F13 | 2026-11-19 | AI silently converted "INR 0.21 per gram" to 210 per kg | **High** - invisible arithmetic by the AI | Prompt rule + deterministic evidence check + tests |
+| # | What went wrong | How bad | Where it ended up |
+|---|---|---|---|
+| F1 | The AI's first answer didn't fit the form; a retry fixed it | Minor, fixed itself | Better logging |
+| F2 | A quote with no price was dropped from the comparison | Serious | Fixed, with a test |
+| F3 | Failed AI calls vanished from the run statistics | Moderate | Fixed, with a test |
+| F4 | A new pytest release crashed before any test ran | Moderate | Version pinned |
+| F5 | The antivirus blocked pytest | Minor | Setting changed |
+| F6 | Rate limits stopped 3 of 4 quotes from being read | Serious | Fixed, with tests |
+| F7 | A recommendation built on partial data looked complete | Critical | Fixed, with a test |
+| F8 | Gemini was overloaded, and with one provider there was no plan B | Serious | Backup providers, with tests |
+| F9 | Google retired the backup model | Moderate | Check script and a new default |
+| F10 | Typing during a run killed the processing | Serious | Background processing, with tests |
+| F11 | My scorer was wrong, not the system | Moderate | Scorer fixed, with a test |
+| F12 | A per-minute limit was mistaken for the daily quota | Moderate | Fixed, with a test |
+| F13 | The AI converted a price it was told to leave alone | Serious | Prompt and evidence check, with tests |
+| F14 | Every AI service was down at the same time | Serious | Documented; more backups added |
+| F15 | The tests failed on a fresh copy of the repository | Moderate | Fixed |
+
+All of these happened on 19 or 20 November 2026.
 
 ---
 
-## F1 - First-attempt schema violation, recovered by repair retry
-- **Observed:** `supplier_analyst invalid_output attempt=1: ValidationError`, then `status=ok attempts=2`
-  (latency 22.6 s instead of ~7 s).
-- **Root cause:** unknown - the log only recorded the exception type, not which field failed.
-- **Impact:** none on correctness (repair retry worked); ~3x latency and ~2x tokens for that call.
-- **Fix:** log now records the failing *field paths* (never values, which may be confidential), e.g.
-  `fields=['evidence.unit_price']`, and they are stored in run metrics (`invalid_fields`).
-- **Lesson:** observability first - you cannot fix what the logs cannot name. F2 was diagnosed in
-  minutes because of this change.
+## F1. The AI's first answer didn't fit the form
 
-## F2 - Quote with missing price was dropped entirely
-- **Observed (try_workflow run, RFQ-DEMO-123537):** Gamma_Quotation.pdf ("Price: to be confirmed")
-  failed validation twice: attempt 1 `fields=['evidence.unit_price']`, attempt 2
-  `fields=['evidence.currency','evidence.tax_status','evidence.unit_price']` -> ExtractionError ->
-  supplier excluded from the comparison.
-- **Root cause:** Gemini correctly returned `unit_price: null`, but also `"evidence": {"unit_price": null}`.
-  The schema required every evidence entry to be an object. The repair prompt pushed the model to
-  "fill" evidence for more null fields, making it worse.
-- **Why it matters:** this is exactly the "missing information" case (TC-02) the system exists to
-  handle. A missing price must surface as `UNKNOWN`, not make the supplier disappear.
-- **Fix (defense in depth):**
-  1. Schema: absent value = absent evidence. Null evidence entries are dropped, not rejected;
-     null lists become `[]`; confidence `95` is read as `0.95`; unparseable page numbers become `null`.
-  2. Prompt: explicit rule "omit evidence keys for null fields"; "to be confirmed / on request" = null price.
-- **Regression tests:** `tests/test_llm_regressions.py::test_f2_*` (uses the exact failing shape).
-- **Note:** intermittent - the same input passed on the next identical run (temperature 0). LLM output is
-  not perfectly deterministic, so the *system* must tolerate variation instead of assuming it away.
+The log showed `invalid_output attempt=1`, then success on the second attempt, with that call taking 22.6
+seconds instead of the usual 7. The retry worked, so nothing was wrong in the result, but the call cost three
+times as long and twice the tokens.
 
-## F3 - Failed AI calls disappeared from metrics
-- **Observed:** same run reported `ai_repair_retries: 0, invalid_fields: []` although Gamma used 2 attempts.
-- **Root cause:** metrics were only returned on success; `ExtractionError` carried no call data.
-- **Fix:** `ExtractionError.meta` carries the call's attempts/latency/tokens/invalid fields; the
-  workflow records failed calls with `status=failed`; new metric `ai_calls_failed`.
-- **Regression test:** `test_f3_failed_call_keeps_its_metrics`.
+The real problem was that I couldn't tell *why* it failed, because the log only recorded the type of error. Now
+it records which fields failed (never their values, since those may be confidential), for example
+`fields=['evidence.unit_price']`, and keeps them in the run statistics. That small change is what let me work
+out F2 in a few minutes.
 
-## F4 - pytest 9.2.0 internal crash
-- **Observed:** `INTERNALERROR> AttributeError: 'NodeId' object has no attribute '_str_cache'` before any test ran.
-- **Root cause:** incompatibility in the newly released pytest 9.2.0 on Python 3.10.0 (not project code).
-- **Fix:** pinned `pytest>=8.0,<9` in requirements.txt.
+## F2. A quote with no price was dropped from the comparison
 
-## F5 - Antivirus flagged pytest as "suspicious activity"
-- **Observed:** 360 Total Security blocked `.venv\Scripts\pytest.exe` "creating file link".
-- **Root cause:** pytest's `tmp_path` creates a `pytest-current` symlink in the system temp folder.
-- **Fix:** `addopts = --basetemp=.pytest_tmp` in pytest.ini (no symlink); documented in the runbook
-  because corporate PCs often run similar security software.
+Gamma's quote says "Price: to be confirmed". The AI failed on it twice, the second time worse than the first,
+and the workflow gave up and left Gamma out of the comparison completely.
 
-## F6 - Rate limiting (HTTP 429) dropped 3 of 4 suppliers
-- **Observed (UI proxy-user test, RFQ-2026-001):** RFQ and Acme extracted; Beta, Delta and Gamma failed
-  with `Gemini API error 429`. Earlier the same day one 429 was absorbed by the retry (12:42 run).
-- **Root cause:** the free tier limits requests per minute and per day. The retry policy (2 s, 4 s) was
-  designed for server hiccups, not quota windows of ~60 s, so all retries landed inside the same window.
-  429 was treated like any other transient error.
-- **Fix:**
-  1. 429 handled separately: wait the delay the API asks for (`retry in Ns`, +1 s margin, capped at 65 s),
-     up to 3 times; logged as `rate_limit_waits`.
-  2. Daily quota detected (`PerDay` quota id): no pointless waiting - switch to `GEMINI_FALLBACK_MODEL`;
-     if that is exhausted too, stop calling the API, mark remaining documents *pending* with a clear message.
-  3. Client-side throttle: minimum gap between calls (`GEMINI_MIN_INTERVAL_S`, default 4 s).
-  4. UI: one-click "Read the N remaining documents" - already-read documents are reused, no extra AI cost.
-- **Regression tests:** `test_f6_*` (per-minute wait, daily-quota fallback, all-models-exhausted) and
-  `test_daily_quota_stops_calls_and_marks_comparison_incomplete`, `test_rerun_after_quota_reset_only_reads_missing_documents`.
+The AI had done the right thing by returning no price. But it also returned an empty source entry for that price,
+and my form insisted every source entry be filled in. The retry message then nudged it to fill in *more* empty
+entries, which made things worse. That stung, because a missing price is exactly the situation (TC-02) the
+system is meant to handle: it should show up as "unknown", not make the supplier disappear.
 
-## F7 - A recommendation built on partial data looked complete
-- **Observed:** after F6, the app recommended Acme with "0 not compliant, 0 need clarification" - true for
-  the 1 supplier it saw, but Delta (cheaper, compliant) had never been read. An approver could not tell.
-- **Root cause:** `recommend()` only sees evaluated suppliers; nothing compared that list with the uploads.
-- **Fix:** the workflow now lists unread quotations; the explanation starts with
-  `INCOMPLETE - N quotation(s) could not be read and are NOT included: ...`; Compare and Decision tabs show a
-  red banner; approving an incomplete comparison requires an explicit confirmation **and** a comment.
-- **Lesson:** "silent partial success" is more dangerous than a crash. Completeness is part of correctness.
+I fixed it in two places. The form now treats "no value" as "no source needed" and quietly tidies up similar
+slips, such as an empty list, a confidence of 95 meaning 0.95, or a page number it can't read. The prompt now
+says to leave out source entries for empty fields, and that "to be confirmed" or "on request" means no price.
+`tests/test_llm_regressions.py` replays the exact answer that failed.
 
-## F8 - Provider outage: Gemini returned 503 "model is overloaded"
-- **Observed (13:31 re-run of RFQ-2026-001):** all three remaining quotations failed with `Gemini API error 503`
-  after 2 retries each (plus two 429 waits of 21 s and 60 s). Run time 128 s, 0 documents read.
-- **Root cause:** the F6 fix added a fallback model only for the *daily-quota* case. A provider-side overload
-  (503) or a long per-minute limit still had no alternative, so the whole system depended on one model
-  being healthy - a single point of failure. Waiting 60 s for a 429 also made the user wait for nothing.
-- **Fix - provider chain:** Gemini primary -> Gemini fallback model -> optional OpenAI-compatible backups
-  (OpenAI, Groq, OpenRouter, local Ollama) configured in `.env`. A backend that is overloaded (after one
-  quick retry), rate-limited for more than 10 s, out of quota, unreachable, or misconfigured is skipped.
-  Every backend's output goes through the same Pydantic contract. Scanned PDFs stay on Gemini (vision).
-  The answering backend is recorded per call (`model`) and shown in the UI ("Answered by ...").
-- **Trade-offs:** (1) every enabled provider receives the documents - backups are opt-in and documented
-  as a privacy decision; (2) different models extract differently - the evaluation set should be re-run per
-  provider before trusting it; (3) rotating several free keys of one provider to dodge limits was rejected:
-  it breaks provider terms and only hides the capacity problem.
-- **Regression tests:** `test_f8_overloaded_primary_falls_back_after_one_quick_retry`,
-  `test_f8_openai_compatible_backup_answers_when_gemini_is_down`, `test_f6_long_per_minute_limit_moves_to_backup_instead_of_waiting`,
-  `test_scanned_pdfs_are_never_sent_to_text_only_backups`, `test_all_backends_down_gives_actionable_message`.
+Worth noting: the same file went through fine on the next identical run. AI output isn't perfectly repeatable
+even at temperature 0, so the system has to cope with variation instead of assuming it away.
 
-## F9 - Fallback model retired by the provider
-- **Observed:** `scripts/check_ai.py` -> `gemini-2.5-flash-lite: 404 ... no longer available to new users`.
-  The model was valid when the code was written and still appeared in the model list.
-- **Root cause:** model IDs are external, versioned dependencies. A backup that is never exercised can be
-  broken for weeks without anyone noticing - until the day it is needed.
-- **Fix:** `scripts/check_ai.py` sends a tiny request to every configured backend (and lists the Claude
-  model IDs the key can use). It is now a step in the runbook: run it after changing `.env` and before
-  every demo. Default fallback changed to the pinned, non-preview `gemini-3.5-flash-lite`.
-  `-latest` aliases and `-preview` models were rejected: they change behaviour without notice, which would
-  make evaluation results irreproducible.
+## F3. Failed AI calls vanished from the run statistics
 
-## F10 - Processing interrupted by a page rerun
-- **Observed (13:57 run of RFQ-2026-001):** the user typed in the sidebar while processing ran. All three
-  documents were extracted, but the status stayed `EXTRACTING`; the run button was disabled and the header
-  said "The AI is reading the documents" forever.
-- **Root cause:** in Streamlit every widget interaction re-runs the page script and stops the current run.
-  The 60-second processing ran *inside* the page script, so it was killed between extraction and evaluation.
-- **Fix:**
-  1. Processing runs in a background job (thread); the page only *shows* progress (auto-refresh every 2 s),
-     so clicks, typing and tab switches no longer affect it. One job per request (double start rejected).
-  2. Interrupted runs are detected (`status = processing` but no job running) -> header shows "Interrupted",
-     button becomes **Resume processing**; extractions already done are reused.
-- **Regression tests:** `test_background_job_finishes_and_keeps_its_progress_log`,
-  `test_interrupted_run_is_detected_and_can_be_resumed`, `test_same_request_cannot_be_processed_twice_at_once`.
-- **Limitation:** jobs live in the app process. If the app itself is stopped mid-run, the run is marked
-  interrupted and resumed manually - acceptable for a single-user MVP; a job queue is in the next-iteration plan.
+The same run reported no retries, although Gamma had taken two attempts. The statistics were only recorded when
+a call succeeded, so failures left no trace. A failed call now keeps its attempts, timing and tokens, it's
+recorded as failed, and there's a new count of failed calls. Test: `test_f3_failed_call_keeps_its_metrics`.
 
-## F11 - The measurement was wrong, not the system
-- **Observed (first evaluation run, TC-01 + TC-04):** extraction 100% (101/101 fields), verdicts 100%,
-  recommendations 100% - but requirement-check agreement only 85.7% (30/35).
-- **Root cause:** the scorer matched checks by exact name. The AI wrote the RFQ certificate as "GMP Certificate",
-  the ground truth says "GMP certificate"; the check names differed only in spelling, so 5 checks (one per
-  supplier) were counted as missing. The application itself matches certificates by meaning - the scorer did not.
-  The offline harness test did not catch it because there the names were identical.
-- **Fix:** the scorer matches checks the same way the engine does (certificate aliases, related spec names).
-  Regression test with differently spelled certificate names. `--report-only` rebuilds reports without AI calls.
-- **Lesson:** validate the evaluator, not only the system. A metric that disagrees with the metrics it is
-  derived from (100% fields + 100% verdicts, but 85.7% checks) is a signal to inspect the measurement first.
+## F4. A new pytest release crashed before any test ran
 
-## F12 - Per-minute rate limit misread as a daily quota
-- **Observed:** `gemini-2.5-flash unavailable: daily quota used up`, yet the very next call to the same model
-  succeeded. The fallback model answered, so nothing failed - but if both models were misread the whole batch
-  would have stopped with "daily quota used up".
-- **Root cause:** detection looked for words like "daily"/"PerDay" anywhere in Google's 429 message, which
-  can describe several quotas at once.
-- **Fix:** read the violated `quotaId`s; only skip a model for the day when *all* violated quotas are daily.
-  The quota IDs are now logged, so the next occurrence is diagnosable from the log alone.
-- **Regression test:** `test_f12_per_minute_limit_is_not_mistaken_for_daily_quota`.
+The newest pytest, 9.2.0, crashed with an internal error on Python 3.10 before running a single test. It wasn't my code. I pinned `pytest>=8.0,<9` in `requirements.txt`.
 
-## F13 - The AI silently did a unit conversion it was told not to do
-- **Observed (full evaluation run, TC-03, gemini-3.5-flash-lite):** only 2 of 440 fields wrong:
-  FibreChem `unit_price` expected 0.21, got **210.0**; `price_per` expected g, got **kg**.
-  Source text: "Price: INR 0.21 per gram, GST 12% extra".
-- **Why it matters although the verdict was right:** 0.21/g x 1000 = 210/kg, so total cost, verdict and
-  recommendation were correct - by luck. The prompt says "do not convert"; the design keeps all arithmetic in
-  tested Python. An AI that converts once can convert wrongly next time (21 or 2,100 per kg), and the stored
-  value no longer matches its evidence, so a reviewer cannot verify it. Without the evaluation harness this
-  would never have been noticed.
-- **Root cause:** the instruction "Do not convert" was a short clause at the end of a rule; the model applied
-  its own "helpful" normalisation toward the RFQ unit (kg), which the prompt also mentions.
-- **Fix (two layers):**
-  1. Prompt: "the number EXACTLY as written ... NEVER convert", with this exact case as an example.
-  2. **Deterministic evidence check** (`app/services/verification.py`): the extracted price must appear in the
-     AI's own quoted source text. If not, the quotation is flagged (HIGH finding, price = REVIEW_REQUIRED,
-     supplier = NEEDS_CLARIFICATION) until a human corrects or confirms it - the confirmation is audited.
-     This catches the whole class (conversions, misread digits, invented numbers), not only this case.
-- **Trade-off:** a false alarm costs a reviewer ~30 seconds; a silent wrong price costs money. Indian number
-  formats ("1,95,000") are handled so they do not cause false alarms.
-- **Regression tests:** `tests/test_verification.py` (replays the exact AI output from TC-03).
-- **Re-run:** `python -m evaluation.run_evaluation --cases TC-03` -> see evaluation/results/latest_TC-03.md.
+## F5. The antivirus blocked pytest
 
-## F14 - Every AI provider unavailable at once during a re-run
-- **Observed (full evaluation re-run, 19 Nov 2026 23:01-23:09, `evaluation/results/outage_run/`):** the main model's
-  free daily quota ran out after two calls (429), the fallback `gemini-3.5-flash-lite` returned 503 "overloaded"
-  repeatedly, and the Claude backup returned 400 because the account has no credit. 5 of 26 AI calls failed, so
-  5 documents were never read (two RFQs, three quotations).
-- **Effect on the scores:** the harness counts an unread document as wrong, so verdict accuracy fell to 57.1% and
-  recommendations to 50%. Values that *were* read were 96.4% correct, in line with the earlier run.
-- **What the product did:** the right thing. Every affected comparison was marked incomplete, and approving one
-  needs an explicit confirmation (the F7 safeguard). Nothing wrong was presented as complete.
-- **Root cause:** the fallback chain only helps if at least one provider is working. On free tiers, all of them
-  can be down at the same time, and the backup chain had one provider without credit.
-- **What I changed:** nothing in the code. I kept this run as evidence, moved it to its own folder so it isn't
-  mistaken for the headline result, and removed the Claude backup from `AI_PROVIDER_ORDER` until it has credit.
-- **What would fix it properly:** a paid tier or a second working provider, and retrying failed documents once
-  after a pause before giving up. The user can already do this with *Read the remaining documents*.
+360 Total Security flagged pytest as suspicious because it creates a shortcut-style link in the system temp
+folder. I set pytest to use a temp folder inside the project instead (`--basetemp=.pytest_tmp` in
+`pytest.ini`), which doesn't need the link. It's in the runbook too, because company laptops often run
+similar software.
 
-## F15 - The tests failed on a fresh copy of the repository
-- **Observed (review against the brief, 20 Nov 2026):** on a new clone with no `.env`, `pytest` stopped at the first
-  import with "No AI key found", so none of the tests ran. On my machine they passed only because `.env` existed.
-- **Root cause:** the startup check that refuses to run without an AI key is right for the app, but the tests import
-  the same configuration, and they never call an AI service.
-- **Fix:** `tests/conftest.py` gives the tests a placeholder key when no `.env` exists. The app itself still refuses
-  to start without a real key.
-- **Lesson:** "it works on my machine" isn't reproducibility. A reviewer's first step is a fresh clone, so that's
-  how it should be tested.
+## F6. Rate limits stopped 3 of 4 quotes from being read
+
+During my first run-through as a stand-in user, the RFQ and Acme's quote were read, then Beta, Delta and Gamma
+all failed with error 429, "too many requests".
+
+The free tier limits requests per minute and per day. My retry waited 2 and then 4 seconds, which is fine for a
+brief hiccup but useless against a limit that resets after about a minute, so every retry landed in the same
+blocked window. I'd treated a rate limit like any other passing error.
+
+Now a rate limit is handled on its own terms. The app waits as long as Google asks (up to 65 seconds, at most
+three times) and logs each wait. If the *daily* quota is gone, it doesn't wait at all; it switches to the backup
+model, and if that's out too, it stops and marks the remaining documents as waiting with a clear message. There's
+also a minimum gap between calls (4 seconds by default). In the app, the run button becomes "Read the N remaining
+documents", and anything already read is reused at no extra cost. Tests: the `test_f6_` group, plus two
+workflow tests for the daily-quota case and for re-running after the quota resets.
+
+## F7. A recommendation built on partial data looked complete
+
+This was the worst one. After F6, the app recommended Acme with "0 not compliant, 0 need clarification". That
+was true for the one supplier it had seen, but Delta, which was cheaper and compliant, had never been read. Someone
+approving it would have had no way to tell.
+
+The recommendation only looked at the suppliers that had been evaluated, and nothing compared that list with
+what had been uploaded. Now the workflow keeps track of unread quotes, the explanation starts with "INCOMPLETE",
+the Compare and Decision tabs show a red warning, and approving an incomplete comparison needs a ticked
+confirmation and a written note.
+
+A partial result that looks complete is more dangerous than a crash. Completeness is part of being correct.
+
+## F8. Gemini was overloaded, and with one provider there was no plan B
+
+Re-running the same RFQ at 13:31, all three remaining quotes failed with error 503, "model overloaded", after two
+retries each. Two rate-limit waits of 21 and 60 seconds came on top. It took 128 seconds and read nothing.
+
+The F6 fix only added a backup model for the daily-quota case. When Google was overloaded there was still nowhere
+else to go, so the whole system depended on one model being healthy.
+
+I added a chain of providers: Gemini, then a second Gemini model, then any OpenAI-compatible service set up in
+`.env` (OpenAI, Groq, OpenRouter or a local Ollama). Claude can be added too. A provider that's overloaded after
+one quick retry, rate-limited for more than 10 seconds, out of quota, unreachable or misconfigured gets skipped.
+Every provider's answer goes through the same form check, scanned PDFs only go to models that can read images,
+and the app shows which model answered.
+
+There are trade-offs. Every provider you switch on sees your documents, so backups are opt-in and the privacy
+side is written down. Different models read differently, so the evaluation should be re-run before trusting a
+new one. I also considered rotating several free Gemini keys to get around the limits, and decided against it:
+it breaks Google's terms and just hides the capacity problem. Five tests cover the chain.
+
+## F9. Google retired the backup model
+
+My new check script reported that `gemini-2.5-flash-lite` was "no longer available to new users". It had been fine
+when I wrote the code and still showed up in the model list.
+
+Model names are outside dependencies that can change under you, and a backup that's never used can be broken for
+weeks without anyone noticing, right up until the day you need it. `scripts/check_ai.py` now sends a tiny request
+to every configured model, and the runbook says to run it after changing `.env` and before any demo. I made
+`gemini-3.5-flash-lite` the default backup. I avoided "-latest" and "-preview" model names on purpose, because they
+can change without warning, and then evaluation results can't be reproduced.
+
+## F10. Typing during a run killed the processing
+
+At 13:57 I typed my name in the sidebar while documents were being read. All three were read, but the status
+stayed on "reading" forever, the run button stayed greyed out, and nothing finished.
+
+In Streamlit, every click or keystroke reruns the page script and stops whatever it was doing. The processing ran
+inside that script, so my typing killed it halfway between reading and comparing.
+
+Processing now runs in the background, and the page just shows its progress, refreshing every two seconds.
+Clicking, typing and switching tabs no longer affect it, and the same RFQ can't be started twice at once. If a run
+does get interrupted, the app notices, and the button becomes "Resume processing", reusing whatever was already
+read. Three tests cover this. One limitation remains: the background job lives inside the app, so if you close the
+app mid-run, you resume by hand. That's fine for one user, and a proper job queue is in the plan.
+
+## F11. My scorer was wrong, not the system
+
+The first evaluation run showed 100% on fields, 100% on verdicts and 100% on recommendations, but only 85.7% on
+requirement checks. Those numbers can't all be true at once.
+
+My scorer matched requirements by their exact name. The AI wrote "GMP Certificate"; my answer key said "GMP
+certificate". The app treats those as the same thing, but the scorer didn't, so five checks were counted as
+missing. My offline test of the scorer hadn't caught it, because there the names were spelled identically.
+
+The scorer now matches requirements the same way the app does, there's a test with differently spelled names,
+and `--report-only` rebuilds the report without calling the AI again. The lesson: test the thing doing the
+measuring, not only the thing being measured. When one number disagrees with the numbers it's built from, check
+the measurement first.
+
+## F12. A per-minute limit was mistaken for the daily quota
+
+The log said the main model's daily quota was used up, and then the very next call to that model worked. Nothing
+broke, because the backup answered, but if both models had been misjudged like that, the whole batch would have
+stopped for the day for no reason.
+
+I'd been looking for words like "daily" anywhere in Google's error message, and one message can mention several
+limits at once. Now the app reads the exact quota IDs Google sends, and only gives up on a model for the day when
+every limit it hit is a daily one. The IDs are logged, so the next surprise can be explained from the log alone.
+Test: `test_f12_per_minute_limit_is_not_mistaken_for_daily_quota`.
+
+## F13. The AI converted a price it was told to leave alone
+
+In the full evaluation, only 2 of 440 fields were wrong, both in TC-03. FibreChem's quote says "INR 0.21 per gram,
+GST 12% extra". The AI stored it as 210 per kg.
+
+The verdict was still right, since 0.21 per gram really is 210 per kg, but only by luck. The whole design keeps
+arithmetic in tested code, and the prompt said not to convert. A model that converts once can convert wrongly the
+next time (21 or 2,100 per kg), and the stored number no longer matches the line it supposedly came from, so a
+reviewer can't check it. Without the evaluation I'd never have noticed. The "don't convert" instruction was a short
+clause tacked onto another rule, and the prompt also mentions the RFQ's unit, which seems to have encouraged the
+model to be helpful.
+
+I fixed it at two levels. The prompt now says to copy the number exactly as written and never convert it, using
+this exact case as the example. More importantly, there's a plain-code check (`app/services/verification.py`):
+the price has to appear in the text the AI quoted as its source. If it doesn't, the quote is flagged, the price is
+marked for review, and the supplier goes to "needs clarification" until someone corrects or confirms it, and that
+confirmation is logged. This catches the whole family of problems, such as conversions, misread digits and
+invented numbers, not just this one case. A false alarm costs a reviewer half a minute; a wrong price nobody sees
+costs money. Indian number formats like "1,95,000" are understood, so they don't trigger false alarms.
+`tests/test_verification.py` replays the exact answer from TC-03, and a re-run brought TC-03 to 38 of 38.
+
+## F14. Every AI service was down at the same time
+
+I re-ran the full evaluation at 23:01 that night, and everything was unavailable at once: the main model's daily
+quota ran out after two calls, the backup kept answering "overloaded", and the Claude backup refused because the
+account had no credit. 5 of 26 calls failed, so two RFQs and three quotes were never read.
+
+The scorer counts an unread document as wrong, so verdicts fell to 57.1% and recommendations to 50%. What *was*
+read was 96.4% right, in line with the earlier run. The app behaved properly: every affected comparison was marked
+incomplete, and approving one needs the confirmation from F7. Nothing wrong was shown as finished.
+
+A chain of backups only helps if at least one link works, and on free tiers they can all fail together. I kept this
+run as evidence in `evaluation/results/outage_run/`, so nobody mistakes it for the headline result, and took Claude
+out of the provider order until it has credit. Later that night I added two free models through OpenRouter as extra
+backups, and both answered in the check script. A paid tier would fix this properly, along with retrying a failed
+document once after a pause. In the app you can already do that by hand with "Read the remaining documents".
+
+## F15. The tests failed on a fresh copy of the repository
+
+Going through the brief again, I realised I'd only ever run the tests on my own machine. On a fresh copy with no
+`.env` file, pytest stops at the first import with "No AI key found", so no tests run at all.
+
+The app is right to refuse to start without a key, but the tests load the same settings and never call an AI
+service. `tests/conftest.py` now gives them a placeholder key when there's no `.env`. The app itself still needs a
+real one.
+
+"It works on my machine" isn't the same as reproducible. A reviewer's first step is a fresh copy, so that's how it
+needs testing.

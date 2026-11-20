@@ -95,9 +95,9 @@ Across 10 test RFQs with 21 quotes:
 | Time saved compared with doing it by hand | about 77% (estimated: 25 min down to 5.7 min) | at least half |
 | Same cases with a plain AI prompt instead (measured) | 85.7% verdicts, 90% recommendations | |
 
-In a walkthrough with a stand-in user, a full RFQ with four suppliers and one broken file went from upload to
-an approved decision in about eight minutes, review included. I noted 13 things that confused or slowed them
-down and changed something for each ([user_feedback.md](user_feedback.md)).
+With no real buyer available, I played the buyer myself. A full RFQ with four suppliers and one broken file went
+from upload to an approved decision in about eight minutes, review included. I wrote down 14 things that
+confused me or slowed me down, and changed something for each ([user_feedback.md](user_feedback.md)).
 
 **Compared with just asking an AI.** I also ran the same 10 cases through one plain prompt, the way a buyer would
 paste quotes into a chat assistant. It got every price right, which surprised me, but 3 of 21 verdicts and 1 of 10
@@ -108,7 +108,7 @@ policy every time and showing where every number came from.
 
 ## What went wrong, and what I learned
 
-I logged 13 real failures, each with its cause, the fix and a test that would catch it again
+I logged 15 real failures, each with its cause, the fix and a test that would catch it again
 ([failure_log.md](failure_log.md)). These five taught me the most.
 
 **A partial result that looked complete (F7).** After a rate-limit error, three of the four quotes were missing,
